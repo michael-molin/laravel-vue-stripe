@@ -7,8 +7,11 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
+        <script src="https://kit.fontawesome.com/a51364b666.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>        
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -61,6 +64,41 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            
+
+            #loading {
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+            }
+        
+            i {
+                    font-size: 24px;
+            }
+
+            #card-button {
+                height: 40px;
+                width:50px;
+                text-align: center;
+                border-radius:2px;
+                margin-top:25px;
+                background-color: white;
+                color: #636b6f;
+            }
+
+            .card-body {
+                margin-top:50px;
+            }
+
+            hr {
+                color: #636b6f;
+                margin: 15px 0;
+            }
+
         </style>
     </head>
     <body>
@@ -81,20 +119,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Stripe
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div id="appMain">
+                    @auth
+                        <stripe-component></stripe-component>
+                    @else
+                        <h1>Fai il Login per testare il Checkout</h1>
+                    @endauth
                 </div>
-            </div>
+            </div>   
         </div>
     </body>
 </html>
